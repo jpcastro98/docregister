@@ -1,0 +1,194 @@
+/*View document*/
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    height: 100vh;
+    border-color: rgba(230, 239, 253, 1);
+}
+
+.vie-table {
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    text-align: center;
+
+}
+
+.icon_download {
+    height: 25px;
+}
+
+.row_document {
+
+    min-width: 100%;
+
+}
+
+.view_document {
+    height: auto;
+    max-height: 450px;
+    width: 100%;
+}
+
+.view_text {
+    height: 450px;
+    max-height: 450px;
+    width: 100%;
+}
+
+
+.table-document {
+    padding: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+table {
+    border-collapse: collapse;
+    /* Combina los bordes adyacentes en uno solo */
+    border: 1px solid #ccc;
+    /* Establece el estilo del borde */
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    /* Establece el estilo del borde */
+    padding: 8px;
+    /* Añade un espacio entre el contenido y el borde */
+}
+
+.text-document {
+
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+}
+
+/**
+Nav*/
+
+nav {
+    background-color: rgba(224, 82, 52, 1);
+    color: white;
+    font-size: 16px;
+}
+
+nav div a {
+    color: white;
+    font-size: 16px;
+}
+
+.card-header {
+
+    background-color: rgba(33, 44, 85, 1);
+    color: white;
+
+}
+
+#app {
+
+    height: 100vh;
+    background-color: #EFEFEF;
+}
+
+/** forms*/
+
+.form_container {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.container_file {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    padding: 5px;
+
+}
+
+.container_process {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.container_process div {
+    width: 40%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.container_file div {
+    width: 40%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center
+}
+
+input,
+select {
+
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid #212c55;
+    background-color: white;
+    padding: 4px;
+}
+
+button {
+    padding: 8px 50px;
+    border-radius: 5px;
+    text-align: center;
+    margin: 15px;
+    background: #212c55;
+    color: white;
+    border: 0px;
+}
+
+form .icon_download {
+    height: 15px;
+}
+
+.menu_li {
+    margin: 0px 10px;
+    color: white;
+}
+
+.contanier_text_area {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.contanier_text {
+    width: 90%;
+    display: flex;
+    flex-flow: column;
+
+}
+
+.contanier_text textarea {
+    height: 100px;
+    width: 100%;
+    padding: 5px;
+    border-radius: 16px;
+}

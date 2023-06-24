@@ -1,0 +1,10 @@
+name: admission
+recipe: laravel
+config:
+  php: 8.1 
+services:
+  appserver:
+    webroot: public
+    xdebug: debug
+    config:
+      php: .vscode/php.ini
