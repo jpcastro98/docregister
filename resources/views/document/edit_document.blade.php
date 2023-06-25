@@ -17,7 +17,7 @@
                             <div class="container_file">
                                 <div>
                                     <label>Nombre:</label>
-                                    <input type="text" id="name" class="from_input" name="name" required maxlength="10" value="{{$document->doc_nombre}}">
+                                    <input type="text" id="name" class="from_input" name="name" required maxlength="60" value="{{$document->doc_nombre}}">
                                 </div>
                                 <div>
                                 
@@ -26,7 +26,7 @@
                                         {{$nameDocument}}
                                     </a> 
                                     <input type="file" id="file" class="input_file" name="file" required
-                                            maxlength="10 "  accept=".pdf, .doc, .docx" placeholder="Seleccionar archivo">    
+                                            accept=".pdf, .doc, .docx" placeholder="Seleccionar archivo">    
                                  
                                 </div> 
                             </div>

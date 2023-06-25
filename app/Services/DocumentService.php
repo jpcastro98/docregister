@@ -33,7 +33,7 @@ class DocumentService
   protected  $documentProcess;
 
   /**
-   * The var associated with the model.
+   * The var associated with the storage.
    *
    * @var \Illuminate\Support\Facades\Storage;;
    */

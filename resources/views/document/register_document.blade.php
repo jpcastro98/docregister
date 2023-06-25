@@ -18,13 +18,13 @@
                                     
                                     <div>
                                         <label>Nombre:</label>
-                                        <input type="text" id="name" class="from_input" name="name"  maxlength="10">
+                                        <input type="text" id="name" class="from_input" name="name"  maxlength="60">
                                     </div>
                                     <div>
 
                                             <label>Archivo:</label>
                                             <input type="file" id="file" class="input_file" name="file" required
-                                                maxlength="10 "  accept=".pdf, .doc, .docx" placeholder="Seleccionar archivo">
+                                                 accept=".pdf, .doc, .docx" placeholder="Seleccionar archivo">
                                     </div>
                                 </div>
                                 <div class="container_process">
