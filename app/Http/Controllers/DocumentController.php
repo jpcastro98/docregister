@@ -119,7 +119,7 @@ class DocumentController extends Controller
     public function show(string $id)
     {
 
-        $document = $this->document::where('doc_id', $id)->first();
+        $document = $this->document::where('slug', $id)->first();
         $newDate = Carbon::parse($document->created_at);
         $newDate = $newDate->format('d/m/Y');
         return view('document.show_document', compact(['document', 'newDate']));
