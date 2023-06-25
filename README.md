@@ -1,3 +1,59 @@
+## Desplegar el proyecto
+
+Para desplegar el proyecto, puedes utilizar cualquier herramienta o servidor en el que puedas instalar los siguientes requisitos:
+
+- PHP: [Instrucciones de instalación](https://www.php.net/manual/en/install.php)
+- Composer: [Instrucciones de instalación](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos)
+- Node.js: [Instrucciones de instalación](https://nodejs.org/en/download)
+- npm: [Instrucciones de instalación](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+En este caso, utilizare lando para desplegar el proyecto:
+
+### Lando
+
+Lando es una herramienta que nos permite montar entornos de desarrollo local y facilita la configuración y gestión de contenedores Docker, lo que nos permite montar nuestro proyecto en cuestión de minutos.
+
+Para instalar Lando, puedes seguir las indicaciones de la documentación oficial: [Instalación de Lando](https://docs.lando.dev/getting-started/installation.html)
+
+Pasos para desplegar el proyecto:
+
+1. Clonar el proyecto desde el repositorio.
+`git clone https://github.com/jpcastro98/docregister.git`
+3. Validar la configuración en el archivo `.lando.yml` y asegurarse de que sea correcta. En caso de ser necesario, crear el archivo con la configuración adecuada. Por ejemplo:
+```
+name: docregister
+recipe: laravel
+config:
+  php: 8.1 
+services:
+  appserver:
+    webroot: public
+    xdebug: debug
+    config:
+      php: .vscode/php.ini
+```
+
+ 
+3. Ejecutar el comando `lando start` para iniciar el contenedor.
+4. Ejecutar `lando composer install` para instalar las dependencias del proyecto.
+5. Ejecutar el comando `lando info` para obtener las credenciales de la base de datos. Configurar el archivo `.env` con las credenciales correspondientes.
+
+![image](https://github.com/jpcastro98/docregister/assets/121535478/71097e4e-f593-4056-b728-e10d742fde2d)
+
+![image](https://github.com/jpcastro98/docregister/assets/121535478/2dc16444-5491-46ec-966f-d4d3281e9194)
+
+6. Ejecutar `lando artisan migrate` y `lando artisan db:seed` para ejecutar las migraciones de los modelos y registrar los seeders.
+7. Ejecutar el comando `npm install` y `npm run build` para instalar las dependencias de Node.js y construir los assets del proyecto.
+
+Estos pasos te permitirán desplegar el proyecto utilizando Lando. 
+
+
+
+
+
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
