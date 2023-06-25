@@ -41,7 +41,7 @@
                             @foreach ($documents as $document)
                             <tr>
                                 <td>{{$document->doc_id}}</td>
-                                <td data-label="name"><a href="{{route('document.show',$document->doc_id)}}">{{ $document->doc_nombre }}</a></td>
+                                <td data-label="name"><a href="{{route('document.show',$document)}}">{{ $document->doc_nombre }}</a></td>
                                 <td data-label="code">{{ $document->doc_codigo }}</td>
                                 <td data-label="code">{{ $document->doc_contenido }}</td>
                                 <td data-label="path"><a href="{{route('download',$document->doc_id)}}"><img class="icon_download" src="{{Vite::asset('resources/img/download.png') }}" alt=""></a></td>
