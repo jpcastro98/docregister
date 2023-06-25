@@ -22,7 +22,7 @@
         <div class="description_document">
             <div>
                 <h2>Descripción</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum eveniet incidunt pariatur sint officia, accusantium assumenda cum fugit mollitia ipsam dolor neque atque praesentium quae ab dolores quo cumque ea!</p>
+                <p>{{$document->doc_contenido}}</p>
             </div>
         </div>
     </div>

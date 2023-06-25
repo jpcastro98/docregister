@@ -1,11 +1,30 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+    
     <div class="row justify-content-center row_document">
+        
         <div class="col-md-8">
-            @if (count($documents)>0)
-             <div class="card view_document">
+            @if (isset($documents_fail))
+            
+            <div class="card view_text">
                 <div class="card-header">{{ __('Lista de documentos') }}</div>
+            <div class="card-body text-document">
+                <div>
+                    <h1>{{$documents_fail}} <a href="{{route('document.index')}}">regresar.</a></h1>
+                </div>
+            @elseif (count($documents)>0)
+             <div class="card view_document">
+                <div class="card-header">{{ __('Lista de documentos') }}
+                    <form class="form-search" method="GET" action="{{ route('search') }}">
+                        @csrf
+                        @method('GET')
+                        <div class="search-document">
+                            <input type="search" class="search-document" id="search" name="search">
+                            <button type="submit">Enviar</button>
+                        </div>
+                    </form>
+                </div>
                 <div class="card-body table-document vie-table">
                     <table>
                         <thead>
@@ -33,7 +52,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger"><img class="icon_download" src="{{Vite::asset('resources/img/delete.png') }}" ></button>
-                                    </form>
+                                    </form></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -192,3 +192,35 @@ form .icon_download {
     padding: 5px;
     border-radius: 16px;
 }
+
+/**Search */
+
+.card-header{
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.search-document{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+}
+.search-document input{
+    width: 100%;
+    height: 28px;
+}
+
+.search-document button{
+    margin: 0px;
+    padding: 10px;
+}
+
+
+.form-search{   
+
+    width: 60%;
+}
+
+

@@ -40,12 +40,13 @@ Route::resource('document',DocumentController::class)->middleware('auth');
 Route::get('/document/{id}',[DocumentController::class,'destroy'])->name('document.destroy')->middleware('auth');
 
 Route::get('/download/{id}',[DocumentController::class, 'downloadDocument'])->name('download')->middleware('auth');
+Route::get('/search',[DocumentController::class,'search'])->name('search');
 
 Route::post('/logout',[LoginController::class,'logout'])->name('logout'); 
 
 Route::get('/login',function (){
     return view('auth.login');
-})->name('login');
+})->name('login')->middleware('guest');
 
 
 

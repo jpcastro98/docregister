@@ -52,10 +52,8 @@ class DocumentController extends Controller
     public function index()
     {
 
-       $documents = $this->document::all();
-       return view('document.view_documents',compact('documents'));
-
-
+        $documents = $this->document::all();
+        return view('document.view_documents', compact('documents'));
     }
 
     /**
@@ -90,11 +88,11 @@ class DocumentController extends Controller
 
         if ($data) {
 
-        
-            /*Se obtiene el archivo*/ 
+
+            /*Se obtiene el archivo*/
             $file = $this->request->file('file');
             $extension = $file->getClientOriginalExtension();
-            $ruta = $this->documentServices->saveFile($data['name'],$file,$data['tip_id'],$data['pro_id'],$extension);
+            $ruta = $this->documentServices->saveFile($data['name'], $file, $data['tip_id'], $data['pro_id'], $extension);
             /**Se genera el codigo de registro */
             $code = $this->documentServices->generateCode($data['tip_id'], $data['pro_id']);
             /**Se guarda los datos en la base de datos*/
@@ -105,13 +103,12 @@ class DocumentController extends Controller
             $newRecord->doc_path = $ruta;
             $newRecord->doc_id_tipo = $data['tip_id'];
             $newRecord->doc_id_proceso = $data['pro_id'];
-            $newRecord->save(); 
+            $newRecord->save();
 
-             return redirect(route('document.create'))->with('create','Documento guardado correctamente');
-        }else{
+            return redirect(route('document.create'))->with('create', 'Documento guardado correctamente');
+        } else {
             return redirect()->back()->withErrors($data);
         }
-        
     }
     //
 
@@ -120,38 +117,36 @@ class DocumentController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {   
-        
-        $document = $this->document::where('doc_id',$id)->first();
+    {
+
+        $document = $this->document::where('doc_id', $id)->first();
         $newDate = Carbon::parse($document->created_at);
         $newDate = $newDate->format('d/m/Y');
-        return view('document.show_document',compact(['document','newDate']));
-
+        return view('document.show_document', compact(['document', 'newDate']));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {   
+    {
         /*Se obtienen los tipos de documentos*/
         $typesDocuments = $this->documentServices->getDocumentTypes();
         /**Se obtiene los tipos de proceso*/
         $processDocuments = $this->documentServices->getProcess();
         /**Se obtiene el documento a editar */
-        $document = $this->document::where('doc_id',$id)->first();
-        
-        $pathDocument = explode('/',$document->doc_path);
-        $nameDocument = end($pathDocument);
-        return view('document.edit_document',compact(['document','typesDocuments','processDocuments','nameDocument']));
+        $document = $this->document::where('doc_id', $id)->first();
 
+        $pathDocument = explode('/', $document->doc_path);
+        $nameDocument = end($pathDocument);
+        return view('document.edit_document', compact(['document', 'typesDocuments', 'processDocuments', 'nameDocument']));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(string $id)
-    {   
+    {
         /**Se valida los datos recibidos */
 
         $data = $this->request->validateWithBag('post', [
@@ -172,8 +167,8 @@ class DocumentController extends Controller
             $extension = $file->getClientOriginalExtension();
             /**Se genera el codigo de registro */
             $code = $this->documentServices->generateCode(intval($data['tip_id']), intval($data['pro_id']));
-            /*Se guarda el archivo y se crea la ruta para guardar en la base de datos*/ 
-            $ruta = $this->documentServices->saveFile($data['name'],$file,intval($data['tip_id']),intval($data['pro_id']),$extension);
+            /*Se guarda el archivo y se crea la ruta para guardar en la base de datos*/
+            $ruta = $this->documentServices->saveFile($data['name'], $file, intval($data['tip_id']), intval($data['pro_id']), $extension);
             /**Se actualizan los datos para el id enviado cómo parametro */
             $updateRecord = $this->document::findOrFail($id);
             $updateRecord->doc_nombre = $data['name'];
@@ -182,7 +177,7 @@ class DocumentController extends Controller
             $updateRecord->doc_contenido = $data['doc_contenido'];
             $updateRecord->doc_id_tipo = intval($data['tip_id']);
             $updateRecord->doc_id_proceso = intval($data['pro_id']);
-            $updateRecord->save(); 
+            $updateRecord->save();
         }
         return redirect()->route('document.index')->with('success', 'El documento se actualizó correctamente.');
     }
@@ -191,19 +186,35 @@ class DocumentController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {    
-         $this->documentServices->deleteDocument($id);
-         $document = $this->document::destroy($id);
-         return redirect('document')->with('delete', 'Registro eliminado exitosamente.');
-
-
+    {
+        $this->documentServices->deleteDocument($id);
+        $document = $this->document::destroy($id);
+        return redirect('document')->with('delete', 'Registro eliminado exitosamente.');
     }
 
-    function downloadDocument($id){
+    function downloadDocument($id)
+    {
 
-        
+
         /**Se crea ruta para poder descargar el archivo */
-        $file = $this->document::select('doc_path')->where('doc_id',$id)->first();
+        $file = $this->document::select('doc_path')->where('doc_id', $id)->first();
         return response()->download(storage_path('app/' . $file->doc_path));
+    }
+
+    public function search()
+    {
+
+        if ($this->request->get('search')) {
+            $documents = $this->document::where('doc_nombre', 'like', '%' . request('search') . '%')->exists();
+            if ($documents == false) {
+                $documents_fail = "No se encontro el archivo";
+                return view('document.view_documents')->with('documents_fail', $documents_fail);
+            }else{
+                $documents = $this->document::where('doc_nombre', 'like', '%' . request('search') . '%')->get();
+            }
+        } else {
+            $documents = $this->document::all();
+        }
+        return view('document.view_documents')->with('documents', $documents);
     }
 }
