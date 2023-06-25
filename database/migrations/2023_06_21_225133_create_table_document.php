@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('doc_nombre',60);
             $table->string('doc_codigo')->unique();
             $table->string('doc_path',4000);
-            $table->string('doc_path',4000);
             $table->unsignedBigInteger('doc_id_tipo');
             $table->unsignedBigInteger('doc_id_proceso');
 

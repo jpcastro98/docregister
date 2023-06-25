@@ -1,4 +1,4 @@
-name: admission
+name: docregister
 recipe: laravel
 config:
   php: 8.1 
